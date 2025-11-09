@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: webapp-backend
+    ports:
+      - "5001:5001"
+    environment:
+      - ENVIRONMENT=development
+      - PORT=5001
+    networks:
+      - webapp-network
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:5001/api/health').read()"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: webapp-frontend
+    ports:
+      - "8080:80"
+    depends_on:
+      - backend
+    networks:
+      - webapp-network
+    environment:
+      - BACKEND_URL=http://localhost:5001
+
+networks:
+  webapp-network:
+    driver: bridge
+

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Web Application</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="env-config.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📈 Stock Price Tracker</h1>
+            <p class="subtitle">Interactive Stock Price Visualization | Demo Data</p>
+        </header>
+
+        <main>
+            <div class="card">
+                <h2>Stock Price Chart</h2>
+                <div class="stock-selector">
+                    <label for="stock-select">Select a Stock:</label>
+                    <select id="stock-select" class="stock-dropdown">
+                        <option value="">Loading stocks...</option>
+                    </select>
+                    <button id="load-stock-btn" class="btn btn-primary">Load Chart</button>
+                </div>
+                <div id="stock-info" class="stock-info" style="display: none;">
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <span class="info-label">Current Price:</span>
+                            <span id="current-price" class="info-value">-</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Change:</span>
+                            <span id="price-change" class="info-value">-</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">High:</span>
+                            <span id="high-price" class="info-value">-</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Low:</span>
+                            <span id="low-price" class="info-value">-</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <canvas id="stockChart"></canvas>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2>Backend Message</h2>
+                <div id="message-display" class="display-box">
+                    <p class="placeholder">Click the button to fetch a message from the backend</p>
+                </div>
+                <button id="fetch-message-btn" class="btn btn-secondary">Fetch Message</button>
+            </div>
+
+            <div class="card">
+                <h2>Health Check</h2>
+                <div id="health-display" class="display-box">
+                    <p class="placeholder">Click the button to check backend health</p>
+                </div>
+                <button id="health-check-btn" class="btn btn-success">Check Health</button>
+            </div>
+        </main>
+
+        <footer>
+            <p>Built with ❤️ using Python Flask + HTML/CSS/JavaScript + Chart.js</p>
+            <p style="margin-top: 10px; font-size: 0.9em; opacity: 0.8;">Demo Application | Stock data simulated for demonstration</p>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
+
